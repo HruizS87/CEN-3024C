@@ -14,12 +14,24 @@ import java.util.Map;
 import java.util.Scanner;
 import java.util.Set;
 
+/**
+ * Date: 04/11/2022
+ * This is an application that revises text files and returns word count in descending order
+ * @author Hector E Ruiz Silva
+ * @version 1.0
+ * 
+ */
 public class TextAnalyzer extends JFrame implements ActionListener {
 
+	/** GUI button to used to open file */
 	JButton btnOpenFile;
+	/** Text area used to view word search result */
 	JTextArea ta;
+	/** Text area used to display path of file being opened */
 	JTextArea taPath;
+	/** GUI button used to view all words */
 	JButton btnViewdAllWords;
+	/** GUI button used to view top 20 words */
 	JButton btnViewTop20Words;
 
 	TextAnalyzer() {
@@ -28,7 +40,6 @@ public class TextAnalyzer extends JFrame implements ActionListener {
 
      //  create a line border with the specified color and width
 		Border border = BorderFactory.createLineBorder(Color.BLUE, 2);
-
 
 		btnOpenFile = new JButton("Open File");
 		btnOpenFile.addActionListener(this);
@@ -131,6 +142,12 @@ public class TextAnalyzer extends JFrame implements ActionListener {
 		}
 	}
 
+	/**
+	 * This method is used to display the text files words on the on GUI
+	 * @param fileName Used to create scanner file
+	 * @param isAllWords Sets conditions for text being read
+	 * @throws FileNotFoundException Signals if any error happens when opening file
+	 */
 	public void displayWords(String fileName, boolean isAllWords) throws FileNotFoundException {
 
 		/** Reading file line by line */
@@ -175,7 +192,7 @@ public class TextAnalyzer extends JFrame implements ActionListener {
 			}
 		});
 
-		if (isAllWords) {// Using same function, using bool value separates output
+		if (isAllWords) {// Using same function, using boolean value separates output
 			String textAreaContent = "";
 			for (Map.Entry<String, Integer> i : sortedList) {
 				textAreaContent = textAreaContent + i.getKey() + " -> " + i.getValue() + "\n";
@@ -193,13 +210,14 @@ public class TextAnalyzer extends JFrame implements ActionListener {
 			}
 			ta.setText("");
 			ta.setText(textAreaContent);
-
 		}
 
 	}
 
+	/**
+	 * @param args Argument parameter for Main method
+	 */
 	public static void main(String[] args) {
 		TextAnalyzer om = new TextAnalyzer();
-
 	}
 }
